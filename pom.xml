@@ -47,9 +47,4 @@
             <artifactId>osgi6-lib-multi-api</artifactId>
         </dependency>
     </dependencies>
-
-    <scm>
-        <developerConnection>scm:git:https://github.com/maprohu/osgi6-multi-api.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 </project>
