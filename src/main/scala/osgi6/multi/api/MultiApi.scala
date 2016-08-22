@@ -1,33 +1,29 @@
 package osgi6.multi.api
 
-import java.io.File
-import javax.servlet.ServletConfig
-import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
 
-import osgi6.common.{BaseRegistry, MultiRegistry, PromiseRegistry}
-import osgi6.scalarx.ListenableRegistry
+import osgi6.common.{BaseRegistry, PromiseRegistry}
 
 /**
   * Created by martonpapp on 04/07/16.
   */
-object MultiApi {
+object MultiApi extends MultiApiTrait {
 
-  trait Callback {
-    def handled(result: Boolean) : Unit
-  }
-
-  trait Handler {
-    def dispatch(request: HttpServletRequest, response: HttpServletResponse, callback: Callback) : Unit
-  }
-
-  trait Registration {
-    def remove : Unit
-  }
-
-  trait Registry {
-    def register(handler: Handler) : Registration
-    def iterate : java.util.Enumeration[Handler]
-  }
+//  trait Callback {
+//    def handled(result: Boolean) : Unit
+//  }
+//
+//  trait Handler {
+//    def dispatch(request: HttpServletRequest, response: HttpServletResponse, callback: Callback) : Unit
+//  }
+//
+//  trait Registration {
+//    def remove : Unit
+//  }
+//
+//  trait Registry {
+//    def register(handler: Handler) : Registration
+//    def iterate : java.util.Enumeration[Handler]
+//  }
 
   val registry : Registry = new BaseRegistry[Handler, Registration](
     unreg = remover => new Registration {
@@ -37,20 +33,20 @@ object MultiApi {
 
 }
 
-object ContextApi {
+object ContextApi extends ContextApiTrait {
 
-  trait Handler {
-    def dispatch(ctx: Context) : Unit
-  }
-
-  trait Registration {
-    def remove : Unit
-  }
-
-  trait Registry {
-    def listen(handler: Handler) : Registration
-    def set(ctx: Context) : Unit
-  }
+//  trait Handler {
+//    def dispatch(ctx: Context) : Unit
+//  }
+//
+//  trait Registration {
+//    def remove : Unit
+//  }
+//
+//  trait Registry {
+//    def listen(handler: Handler) : Registration
+//    def set(ctx: Context) : Unit
+//  }
 
   val registry : Registry = new PromiseRegistry[Context, Handler, Registration](
     notify = (handler, value) => handler.dispatch(value),
@@ -61,13 +57,13 @@ object ContextApi {
 
 }
 
-trait Context {
-  def name: String
-  def data: File
-  def log: File
-  def debug: Boolean
-  def stdout: Boolean
-  def rootPath : String
-  def servletConfig: ServletConfig
-}
+//trait Context {
+//  def name: String
+//  def data: File
+//  def log: File
+//  def debug: Boolean
+//  def stdout: Boolean
+//  def rootPath : String
+//  def servletConfig: ServletConfig
+//}
 

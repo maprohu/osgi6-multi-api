@@ -41,5 +41,9 @@
             <groupId>osgi6</groupId>
             <artifactId>osgi6-scalarx</artifactId>
         </dependency>
+        <dependency>
+            <groupId>osgi6</groupId>
+            <artifactId>osgi6-lib-multi-api</artifactId>
+        </dependency>
     </dependencies>
 </project>
